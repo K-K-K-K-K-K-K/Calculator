@@ -81,6 +81,7 @@ class Application(ttk.Frame):
 				self.disp.set(eval(self.disp.get()))
 			except SyntaxError:
 				tkmsgbox.showerror("通知", "數式の構文に錯誤有り")
-		# text to fuitti no mono wo henkan sitari , nado
+		# widget["text"] と不一致である物への對應 (變換に依つて)
+		# 函數等への對應
 		else:
 			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + event.widget["text"])
