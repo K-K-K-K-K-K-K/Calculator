@@ -4,11 +4,11 @@ import tkinter.messagebox as tkmsgbox
 
 class Application(ttk.Frame):
 	_widgets = [
-		["(", ")", "**", "/"],
-		["8", "9", "CLR", "*"],
-		["5", "6", "7", "-"],
-		["2", "3", "4", "+"],
-		["0", "1", ".", "="],
+		["(", ")", "^", "÷"],
+		["8", "9", "CLR", "×"],
+		["5", "6", "7", "－"],
+		["2", "3", "4", "＋"],
+		["0", "1", ".", "＝"],
 	]
 
 	def __init__(self, master = None):
@@ -76,12 +76,21 @@ class Application(ttk.Frame):
 		inp = event.widget["text"]
 		if inp == "CLR":
 			self.disp.set("0")
-		elif inp == "=":
+		elif inp == "^":
+			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + "**")
+		elif inp == "÷":
+			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + "/")
+		elif inp == "×":
+			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + "*")
+		elif inp == "－":
+			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + "-")
+		elif inp == "＋":
+			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + "+")
+		elif inp == "＝":
 			try:
 				self.disp.set(eval(self.disp.get()))
 			except SyntaxError:
 				tkmsgbox.showerror("通知", "數式の構文に錯誤有り")
-		# widget["text"] と不一致である物への對應 (變換に依つて)
 		# 函數等への對應
 		else:
 			self.disp.set((self.disp.get() if self.disp.get() != "0" else "") + event.widget["text"])
